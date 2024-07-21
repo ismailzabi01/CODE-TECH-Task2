@@ -1,0 +1,28 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+#from sklearn.datasets import load_boston # Removed import of load_boston
+from sklearn.datasets import fetch_california_housing # Import California housing dataset
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.preprocessing import StandardScaler
+
+# Load California Housing dataset instead of Boston
+housing = fetch_california_housing()
+# Create a DataFrame from the dataset
+data = pd.DataFrame(housing.data, columns=housing.feature_names)
+data['PRICE'] = housing.target # Assuming the target variable is 'PRICE'
+
+# Display the first few rows of the dataset
+print(data.head())
+
+# Display basic information about the dataset
+print(data.info())
+
+# Display summary statistics of the dataset
+print(data.describe())
+# Separate the features and the target variable
+X = data.drop('PRICE', axis=1)
+y = data['PRICE']
